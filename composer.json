@@ -13,9 +13,7 @@
         }
     ],
     "require": {
-        "sonata-project/user-bundle": "~2.2",
-        "symbio/orangegate4-notification-bundle": "~1.0@dev",
-        "symbio/orangegate4-classification-bundle": "~1.0@dev"
+        "sonata-project/user-bundle": "~2.2"
     },
     "require-dev": {
     },
