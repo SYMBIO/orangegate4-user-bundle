@@ -20,7 +20,7 @@
     "suggest": {
     },
     "autoload": {
-        "psr-4": { "Symbio\\OrangeGate\\MediaBundle\\": "" }
+        "psr-4": { "Symbio\\OrangeGate\\UserBundle\\": "" }
     },
     "extra": {
         "branch-alias": {
