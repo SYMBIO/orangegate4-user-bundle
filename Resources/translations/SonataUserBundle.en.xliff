@@ -16,7 +16,7 @@
             </trans-unit>
             <trans-unit id="title_user_authentication">
                 <source>title_user_authentication</source>
-                <target>OrangeGate4 Sign In</target>
+                <target>Sign In</target>
             </trans-unit>
             <trans-unit id="sonata_user_submit">
                 <source>sonata_user_submit</source>
