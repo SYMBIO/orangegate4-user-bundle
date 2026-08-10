@@ -1,3 +1,5 @@
+{# Deprecated on SF7 — active override: Resources/views/bundles/SonataUserBundle/Admin/Security/login.html.twig #}
+
 {#
 
 This file is part of the Sonata package.
@@ -28,7 +30,7 @@ file that was distributed with this source code.
             {% endif %}
 
             <form action="{{ path("sonata_user_admin_security_check") }}" method="post">
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
                 <div class="form-group has-feedback">
                     <input type="text" name="_username" value="{{ last_username }}" required="required" class="form-control" placeholder="{{ 'security.login.username'|trans({}, 'SonataUserBundle') }}">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>

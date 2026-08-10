@@ -1,0 +1,68 @@
+{#
+    SF7: OrangeGate overrides Sonata User login via Resources/views/bundles/…
+    (legacy Symfony 2 used getParent() on SymbioOrangeGateUserBundle).
+
+    Production parity: OrangeGate4 heading, not Sonata logo.
+    CSRF: Twig function csrf_token() shadows Sonata's csrf_token variable.
+#}
+{% extends '@!SonataUser/Admin/Security/login.html.twig' %}
+
+{% block login_box_header %}
+    <div class="login-logo">
+        <a href="{{ path('sonata_admin_dashboard') }}">OrangeGate4</a>
+    </div>
+{% endblock %}
+
+{% block sonata_user_login_form %}
+    {% block sonata_user_login_error %}
+        {% if error %}
+            <div class="alert alert-danger alert-error">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+    {% endblock %}
+    <p class="login-box-msg">{{ 'title_user_authentication'|trans({}, 'SonataUserBundle') }}</p>
+
+    <form action="{{ path("sonata_user_admin_security_check") }}" method="post" role="form">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+
+        <div class="form-group has-feedback">
+            <input class="form-control"
+                id="username"
+                name="_username"
+                placeholder="{{ 'security.login.username'|trans({}, 'SonataUserBundle') }}"
+                required="required"
+                type="text"
+                value="{{ last_username }}"/>
+            <span class="fas fa-user form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback">
+            <input class="form-control"
+                id="password"
+                name="_password"
+                placeholder="{{ 'security.login.password'|trans({}, 'SonataUserBundle') }}"
+                required="required"
+                type="password"/>
+            <span class="fas fa-lock form-control-feedback"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                        {{ 'security.login.remember_me'|trans({}, 'SonataUserBundle') }}
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <button type="submit" name="submit" class="btn btn-primary btn-block btn-flat">{{ 'security.login.submit'|trans({}, 'SonataUserBundle') }}</button>
+            </div>
+        </div>
+    </form>
+
+    {% if reset_route|default %}
+    <a href="{{ reset_route }}">{{ 'forgotten_password'|trans({}, 'SonataUserBundle') }}</a>
+    {% endif %}
+{% endblock %}
